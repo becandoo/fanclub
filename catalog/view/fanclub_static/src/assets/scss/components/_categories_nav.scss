@@ -1,0 +1,25 @@
+.categories-nav {
+    background: #006084;
+    a {  
+        background: #006084;
+        border: 0;
+        color: $gray-300;
+        padding: 8px 12px;
+    }
+    .child {
+        margin-left: 30px;
+    }
+    .btn {
+        background-color: #e26701;
+        border-color: transparent;
+        width: 60%;
+        display: block;
+    margin: 0 auto;
+    }
+    #etsy{
+      
+        width: 35%;
+        margin: 30px auto 5px auto;
+    display: block;
+    }
+}

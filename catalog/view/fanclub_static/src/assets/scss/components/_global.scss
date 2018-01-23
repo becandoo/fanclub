@@ -1,0 +1,23 @@
+
+//change background color using color palette and mixin
+.swatch {
+    @include ui-bg-colors($theme-colors);
+}
+
+//text colors using mixin ui-colors
+.text {
+    @include ui-colors($theme-colors);
+  }
+
+  /*cards*/
+.panel-group {
+    .card+.card {
+        margin-top: 5px;
+    }
+    .card-title {
+        margin-bottom: 0;
+        a {
+            color: $gray-700;
+        }
+    }
+}

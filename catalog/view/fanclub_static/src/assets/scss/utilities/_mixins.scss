@@ -1,0 +1,19 @@
+
+//ui colors (i.e. text-'color')
+@mixin ui-colors($map){
+    @each $theme, $color in $map {
+        &-#{$theme}{
+            color: $color !important;
+            }
+        }
+    }
+    
+    //ui colors (i.e. class="bg-'color')
+    @mixin ui-bg-colors($map){
+    @each $theme, $color in $map {
+        &-#{$theme}{
+            background-color: $color;
+            color: white;
+            }
+        }
+    }

@@ -1,0 +1,42 @@
+header {
+    #logo {
+        img {
+            width: 25%;
+            display: block;
+            margin: 0 auto;
+        }        
+    }
+    #search {
+        margin-top: 30px;
+        .btn-lg {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .btn-default {
+       
+        }
+    }
+    #cart {
+        margin-top: 30px;
+    }
+    #description {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+@include media-breakpoint-down(sm) { 
+    header {
+        #description {
+            width: 80%;
+            display: none !important;
+            margin: 0 auto;
+        }
+        #logo {
+            img {
+                width: 100%;
+            }        
+        }
+    }
+ }
