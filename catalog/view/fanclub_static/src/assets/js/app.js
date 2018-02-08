@@ -29,6 +29,26 @@ if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
 
 $("document").ready(function() {
 
+  $('input[name=option_227]').change(function () {      
+      var colorVal = $(this).attr('value');
+      //console.log(colorVal);
+      var swatch = {17:'black',32:'red',96:'ornage'};
+      console.log(swatch[colorVal]);
+      //console.log(colorVal);
+      // var imgId = '#i' + inputVal;
+      // //console.log(imgId);
+      // var newImg = $(imgId).prop('outerHTML');
+      // //console.log(newImg);
+      // $('.thumbnails').children('li').children('a').html(newImg);
+      // $(imgId).remove();
+      // $(imgId).slideDown();
+      //console.log(vintageImg);
+      //$(vintageImg).replaceWith(newImg);
+  });
+  $('.carousel').carousel({
+    interval: false
+  });
+
   function replaceOffsets(offsetColumns) {    
       $(".col-sm-offset-" + offsetColumns).each(function(i, el) {
         $(this).removeClass("col-sm-offset-" + offsetColumns);

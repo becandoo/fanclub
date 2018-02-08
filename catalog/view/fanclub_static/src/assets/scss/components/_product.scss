@@ -1,3 +1,31 @@
+$swatch-options: (
+  matte-black: #030303,
+  slate-gray: #5d5d5a,
+  burgundy: #7a253c,
+  mocha-brown: #573620,
+  aqua: aqua,
+  cherry-red: #be2028,
+  cool-mint: #9cc0a4,
+  coral: coral,
+  crater-blue: blue,
+  lime-green: green,
+  lipstick-pink: pink,
+  navy: navy,
+  olive-green: green,
+  royal-purple: #1E91D6,
+  solar-orange: orange,
+  stainless-steel: #73a32d,
+  winter-white: white,
+);
+
+//swatch mixin
+@mixin swatch-mixin($map){
+@each $theme, $color in $map {
+    &.#{$theme}{
+        background-color: $color;
+        }
+    }
+}
 .nav-tabs {
     margin-bottom: 15px;
 }
@@ -7,6 +35,81 @@
     .swatch {
        .swatch-element {
            display:inline-block;
+            -webkit-transform: translateZ(0);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0px 10px 5px 0;
+            position: relative;
+           &.color {
+               label{
+                border: 1px solid #7a253c;
+                cursor: pointer;
+                height: 30px;
+                margin: 0;
+                transform: rotate(225deg);
+                width: 20px;
+                -ms-transform: rotate(225deg);
+                -webkit-transform: rotate(225deg);
+                min-width: 30px;
+                height: 30px;
+                line-height: 30px;
+                input {
+                    display: none;
+                }
+               }
+               &{
+                @include swatch-mixin($swatch-options);
+               }
+           }
+           img {
+               border: 0;
+           }
        } 
     }
 }
+
+.swatch label {
+    float: left;
+    min-width: 25px;
+    height: 35px;
+    margin: 0;
+    font-size: 13px;
+    text-align: center;
+    line-height: 35px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.swatch .color label {
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.swatch-element.color label {
+    border: 1px solid #7a253c;
+    cursor: pointer;
+    height: 30px;
+    margin: 0;
+    transform: rotate(225deg);
+    width: 20px;
+    -ms-transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+}
+
+.color.swatch-element label {
+    padding: 0;
+}
+
+.swatch-element.color, .swatch-element.color label {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: #e2e2e2 1px solid;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
