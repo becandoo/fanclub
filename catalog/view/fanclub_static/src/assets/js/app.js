@@ -28,22 +28,39 @@ if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
 //$('.datepicker').attr('value', today);
 
 $("document").ready(function() {
-
-  $('input[name=option_227]').change(function () {      
+  $('input[name=option_227]').change(function () {
+      var bottleSize = '';
+      var productTitle = $('#productTitle').text();
+      //console.log(productTitle);
+      if (productTitle == 'FIFTY/FIFTY BOTTLE 12oz.') {
+        bottleSize = '12oz';
+      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 18oz.') {
+        bottleSize = '18oz';
+      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 25oz.') {
+        bottleSize = '25oz';
+      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 34oz.') {
+        bottleSize = '34oz';
+      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 40oz.') {
+        bottleSize = '40oz';
+      }else if (productTitle == 'FIFTY/FIFTY GROWLER 64oz.') {
+        bottleSize = '64oz';
+      }else if (productTitle == 'FIFTY/FIFTY WINE GROWLER 25oz.') {
+        bottleSize = '25wine';
+      }
+      bottleSize = '34oz';
+      //console.log(bottleSize);
+      var bottleSizes = {'12oz': '12oz-flip-', '18oz':'18oz-3_finger-','25oz': '25oz-2_finger-','34oz':'34oz_3_finger-','40oz': '40oz-3finger-','64oz':'64oz-growler-','25wine':'25oz-wine-growler-',};
+      var bottleUrl = bottleSizes[bottleSize];
+      //console.log(bottleUrl);
       var colorVal = $(this).attr('value');
       //console.log(colorVal);
-      var swatch = {17:'black',32:'red',96:'ornage'};
-      console.log(swatch[colorVal]);
-      //console.log(colorVal);
-      // var imgId = '#i' + inputVal;
-      // //console.log(imgId);
-      // var newImg = $(imgId).prop('outerHTML');
-      // //console.log(newImg);
-      // $('.thumbnails').children('li').children('a').html(newImg);
-      // $(imgId).remove();
-      // $(imgId).slideDown();
-      //console.log(vintageImg);
-      //$(vintageImg).replaceWith(newImg);
+      var colorOption = swatch[colorVal];
+      //console.log(colorVal + ': ' + colorOption);
+      var newImgSrc = `http://127.0.0.1:8000/edsa-fanclub/image/catalog/products/${bottleUrl}${colorOption}.png`;
+      //console.log(newImgSrc);
+
+      $('#mainImg').attr('src', newImgSrc);
+      $('#mainImgLink').attr('href', newImgSrc);
   });
   $('.carousel').carousel({
     interval: false

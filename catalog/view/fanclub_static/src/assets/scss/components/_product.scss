@@ -1,20 +1,20 @@
 $swatch-options: (
-  matte-black: #030303,
-  slate-gray: #5d5d5a,
+  black: #030303,
+  gray: #5d5d5a,
   burgundy: #7a253c,
-  mocha-brown: #573620,
+  brown: #573620,
   aqua: aqua,
-  cherry-red: #be2028,
-  cool-mint: #9cc0a4,
+  red: #be2028,
+  mint: #9cc0a4,
   coral: coral,
-  crater-blue: blue,
-  lime-green: green,
-  lipstick-pink: pink,
+  blue: blue,
+  lime: green,
+  pink: pink,
   navy: navy,
-  olive-green: green,
-  royal-purple: #1E91D6,
-  solar-orange: orange,
-  stainless-steel: #73a32d,
+  olive: green,
+  purple: purple,
+  orange: orange,
+  steel: #5d5d5a,
   winter-white: white,
 );
 
@@ -29,7 +29,13 @@ $swatch-options: (
 .nav-tabs {
     margin-bottom: 15px;
 }
-
+#product-product {
+    .thumbnail {
+        img {
+            max-height: 228px;
+        }
+    }
+}
 .swatch_options {
     margin-bottom: 1em;
     .swatch {
