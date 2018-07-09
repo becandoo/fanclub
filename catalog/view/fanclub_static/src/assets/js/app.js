@@ -16,6 +16,10 @@ import Bootstrap from "bootstrap";
 import './lib/magnific-popup.js';
 import './lib/engraving.js';
 import './lib/custom.js';
+import './lib/ciopimage.js';
+
+//import './test.js';
+//import './debug.js';
 
 var today = new Date();
 var dd = today.getDate();
@@ -25,46 +29,102 @@ var yyyy = today.getFullYear();
 if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
 
 //set datepicker value for future use when replacing datetimepicker function call
-//$('.datepicker').attr('value', today);
-
-$("document").ready(function() {
-  $('input[name=option_227]').change(function () {
-      var bottleSize = '';
-      var productTitle = $('#productTitle').text();
-      //console.log(productTitle);
-      if (productTitle == 'FIFTY/FIFTY BOTTLE 12oz.') {
-        bottleSize = '12oz';
-      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 18oz.') {
-        bottleSize = '18oz';
-      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 25oz.') {
-        bottleSize = '25oz';
-      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 34oz.') {
-        bottleSize = '34oz';
-      }else if (productTitle == 'FIFTY/FIFTY BOTTLE 40oz.') {
-        bottleSize = '40oz';
-      }else if (productTitle == 'FIFTY/FIFTY GROWLER 64oz.') {
-        bottleSize = '64oz';
-      }else if (productTitle == 'FIFTY/FIFTY WINE GROWLER 25oz.') {
-        bottleSize = '25wine';
-      }
+$('.datepicker').attr('value', today);
+let changeImage = (input, color) => {
+  $(input).change(function (){
+    var bottleSize = '';
+    var productTitle = $('#productTitle').text();
+    //console.log(productTitle);
+    if (productTitle == 'FIFTY/FIFTY BOTTLE 12oz.') {
+      bottleSize = '12oz';
+    }else if (productTitle == 'FIFTY/FIFTY BOTTLE 18oz.') {
+      bottleSize = '18oz';
+    }else if (productTitle == 'FIFTY/FIFTY BOTTLE 25oz.') {
+      bottleSize = '25oz';
+    }else if (productTitle == 'FIFTY/FIFTY BOTTLE 34oz.') {
       bottleSize = '34oz';
-      //console.log(bottleSize);
-      var bottleSizes = {'12oz': '12oz-flip-', '18oz':'18oz-3_finger-','25oz': '25oz-2_finger-','34oz':'34oz_3_finger-','40oz': '40oz-3finger-','64oz':'64oz-growler-','25wine':'25oz-wine-growler-',};
-      var bottleUrl = bottleSizes[bottleSize];
-      //console.log(bottleUrl);
-      var colorVal = $(this).attr('value');
-      //console.log(colorVal);
-      var colorOption = swatch[colorVal];
-      //console.log(colorVal + ': ' + colorOption);
-      var newImgSrc = `http://127.0.0.1:8000/edsa-fanclub/image/catalog/products/${bottleUrl}${colorOption}.png`;
-      //console.log(newImgSrc);
+    }else if (productTitle == 'FIFTY/FIFTY BOTTLE 40oz.') {
+      bottleSize = '40oz';
+    }else if (productTitle == 'FIFTY/FIFTY GROWLER 64oz.') {
+      bottleSize = '64oz';
+    }else if (productTitle == 'FIFTY/FIFTY WINE GROWLER 25oz.') {
+      bottleSize = '25wine';
+    }
+    //bottleSize = '34oz';
+    //console.log(bottleSize);
+    var bottleSizes = {'12oz': '12oz-flip-', '18oz':'18oz-3_finger-','25oz': '25oz-2_finger-','34oz':'34oz_3_finger-','40oz': '40oz-3finger-','64oz':'64oz-growler-','25wine':'25oz-wine-growler-',};
+    var bottleUrl = bottleSizes[bottleSize];
+    //console.log(bottleUrl);
+    var colorVal = $(this).attr('value');
+    //console.log(colorVal);
+    var colorOption = swatch[colorVal];
+    //console.log(colorVal + ': ' + colorOption);
+    var newImgSrc = `http://fanclubcreations.com/shop/image/catalog/products/5050/${bottleUrl}${colorOption}.png`;
+    //console.log(newImgSrc);
 
-      $('#mainImg').attr('src', newImgSrc);
-      $('#mainImgLink').attr('href', newImgSrc);
+    $('#mainImg').attr('src', newImgSrc);
+    $('#mainImgLink').attr('href', newImgSrc);
   });
+}
+ $("document").ready(function() {
+  let optionColor = document.getElementsByClassName('color');
+  for(let i=0; i<optionColor.length;i++){
+    
+    let optionValue = optionColor[i].getAttribute('data-option-value');
+    if(optionValue){
+      optionValue = optionValue.toLowerCase();
+    }
+    let productTitle = optionColor[i].parentElement.firstElementChild.textContent;
+    console.log(productTitle);
+
+  }
+  let swatches= document.getElementsByClassName('swatch-element');
+  for(let i=0; i<swatches.length; i++){
+    swatches[i].addEventListener('click', function(){
+      let input = swatches[i].firstElementChild.firstElementChild;
+      let color = swatches[i].getAttribute('data-option-color');  
+      changeImage(input, color);    
+    });
+  }
+  //old
+  // $('input[name=option_227]').change(function () {
+  //     var bottleSize = '';
+  //     var productTitle = $('#productTitle').text();
+  //     //console.log(productTitle);
+  //     if (productTitle == 'FIFTY/FIFTY BOTTLE 12oz.') {
+  //       bottleSize = '12oz';
+  //     }else if (productTitle == 'FIFTY/FIFTY BOTTLE 18oz.') {
+  //       bottleSize = '18oz';
+  //     }else if (productTitle == 'FIFTY/FIFTY BOTTLE 25oz.') {
+  //       bottleSize = '25oz';
+  //     }else if (productTitle == 'FIFTY/FIFTY BOTTLE 34oz.') {
+  //       bottleSize = '34oz';
+  //     }else if (productTitle == 'FIFTY/FIFTY BOTTLE 40oz.') {
+  //       bottleSize = '40oz';
+  //     }else if (productTitle == 'FIFTY/FIFTY GROWLER 64oz.') {
+  //       bottleSize = '64oz';
+  //     }else if (productTitle == 'FIFTY/FIFTY WINE GROWLER 25oz.') {
+  //       bottleSize = '25wine';
+  //     }
+  //     bottleSize = '34oz';
+  //     //console.log(bottleSize);
+  //     var bottleSizes = {'12oz': '12oz-flip-', '18oz':'18oz-3_finger-','25oz': '25oz-2_finger-','34oz':'34oz_3_finger-','40oz': '40oz-3finger-','64oz':'64oz-growler-','25wine':'25oz-wine-growler-',};
+  //     var bottleUrl = bottleSizes[bottleSize];
+  //     //console.log(bottleUrl);
+  //     var colorVal = $(this).attr('value');
+  //     //console.log(colorVal);
+  //     var colorOption = swatch[colorVal];
+  //     //console.log(colorVal + ': ' + colorOption);
+  //     var newImgSrc = `http://fanclubcreations.com/shop/image/catalog/products/5050/${bottleUrl}${colorOption}.png`;
+  //     //console.log(newImgSrc);
+
+  //     $('#mainImg').attr('src', newImgSrc);
+  //     $('#mainImgLink').attr('href', newImgSrc);
+  // });
   $('.carousel').carousel({
     interval: false
   });
+
 
   function replaceOffsets(offsetColumns) {    
       $(".col-sm-offset-" + offsetColumns).each(function(i, el) {
